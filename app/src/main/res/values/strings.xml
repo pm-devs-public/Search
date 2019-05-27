@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Search</string>
+    <string name="menu_home_label">Home</string>
+    <string name="menu_account_label">Account</string>
+    <string name="menu_settings_label">Settings</string>
+    <string name="search">Search</string>
+</resources>
