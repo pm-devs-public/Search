@@ -74,7 +74,7 @@ class SearchActivity : AppCompatActivity() {
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (BottomSheetBehavior.STATE_COLLAPSED == newState) {
                     setResult(Activity.RESULT_OK, createResultData())
-                    finish()
+                    finishAfterTransition()
                 }
             }
 

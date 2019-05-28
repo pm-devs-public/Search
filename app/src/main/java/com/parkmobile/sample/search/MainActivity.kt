@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import kotlinx.android.synthetic.main.search_view.*
 
 class MainActivity : AppCompatActivity() {
@@ -33,11 +35,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSearchScreen() {
         startActivityForResult(
-                SearchActivity.createStartIntent(
-                        this,
-                        search_edit_text.text.toString()
-                ),
-                REQUEST_SEARCH
+            SearchActivity.createStartIntent(
+                this,
+                search_edit_text.text.toString()
+            ),
+            REQUEST_SEARCH,
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                Pair(search_card_view, "search")
+            ).toBundle()
         )
     }
 

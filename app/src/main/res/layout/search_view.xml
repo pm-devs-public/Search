@@ -5,6 +5,7 @@
     android:id="@+id/search_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:transitionName="search"
     app:cardBackgroundColor="#FFFFFF"
     app:cardCornerRadius="8dp"
     app:cardElevation="2dp"
