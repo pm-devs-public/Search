@@ -25,7 +25,7 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
 
-        setupSearchView(intent.getStringExtra(EXTRA_QUERY))
+        setupSearchView(SearchService.latestQuery)
         setupBottomSheet()
         setupSearchResultsRecyclerView()
     }
@@ -73,7 +73,6 @@ class SearchActivity : AppCompatActivity() {
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 if (BottomSheetBehavior.STATE_COLLAPSED == newState) {
-                    setResult(Activity.RESULT_OK, createResultData())
                     finish()
                 }
             }
@@ -93,15 +92,10 @@ class SearchActivity : AppCompatActivity() {
         search_results_recycler_view.adapter = searchResultsAdapter
     }
 
-    private fun createResultData(): Intent =
-            Intent().putExtra(EXTRA_QUERY, search_edit_text.text.toString())
-
     companion object {
 
-        const val EXTRA_QUERY = "query"
-
-        fun createStartIntent(context: Context, query: String): Intent =
-                Intent(context, SearchActivity::class.java).putExtra(EXTRA_QUERY, query)
+        fun createStartIntent(context: Context): Intent =
+                Intent(context, SearchActivity::class.java)
 
     }
 

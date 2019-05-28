@@ -1,6 +1,5 @@
 package com.parkmobile.sample.search
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import androidx.appcompat.app.AppCompatActivity
@@ -15,12 +14,9 @@ class MainActivity : AppCompatActivity() {
         setupViews()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (REQUEST_SEARCH == requestCode && data != null) {
-            updateSearchViewWithResultData(data)
-        }
+    override fun onResume() {
+        super.onResume()
+        updateSearchViewWithLatestQuery()
     }
 
     private fun setupViews() {
@@ -32,24 +28,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSearchScreen() {
-        startActivityForResult(
-                SearchActivity.createStartIntent(
-                        this,
-                        search_edit_text.text.toString()
-                ),
-                REQUEST_SEARCH
-        )
+        startActivity(SearchActivity.createStartIntent(this))
     }
 
-    private fun updateSearchViewWithResultData(data: Intent) {
-        val query = data.getStringExtra(SearchActivity.EXTRA_QUERY)
-        search_edit_text.setText(query)
-    }
-
-    companion object {
-
-        private const val REQUEST_SEARCH = 1
-
+    private fun updateSearchViewWithLatestQuery() {
+        search_edit_text.setText(SearchService.latestQuery)
     }
 
 }
