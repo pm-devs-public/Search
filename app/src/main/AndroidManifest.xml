@@ -19,9 +19,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SearchActivity"
-            android:theme="@style/AppTheme.Translucent"
-            android:windowSoftInputMode="stateVisible" />
     </application>
 </manifest>
